@@ -17,13 +17,22 @@ namespace App;
             $page = 'create';
             
             if(!empty($_POST)){
+                $created = true;
                 $viewParams = 
                 [
                     'title' => $_POST['title'],
                     'description' => $_POST['description']
                 ];
             };
-    } else {
+
+            $viewParams['created'] = $created;
+    } else if($action === 'show'){
+        $viewParams = [
+            'title' => 'Moja notatka',
+            'description' => 'Opis'
+        ];
+    }
+    else {
         $page = 'list';
         $viewParams['resultList'] = "wyswietlamy notatki";
     };
